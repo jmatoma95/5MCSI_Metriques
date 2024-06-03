@@ -9,7 +9,7 @@ app = Flask(__name__)
                                                                                                                                        
 @app.route('/')
 def hello_world():
-    return render_template('hello.html') #he
+    return render_template('hello.html') #h
   
 if __name__ == "__main__":
   app.run(debug=True)
