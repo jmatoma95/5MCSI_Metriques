@@ -26,8 +26,9 @@
     ['4 février', 12.756],
   ]);
         var options = {
-          title: 'Evolution des temp&eacute;ratures de la vile de Tawarano',
+          title: 'Evolution des températures de la vile de Tawarano',
           legend: { position: 'none' },
+          histogram: { temperature: 20 }
         };
 
         var chart = new google.visualization.Histogram(document.getElementById('chart_div'));
