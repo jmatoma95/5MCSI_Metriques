@@ -1,32 +1,19 @@
-<html>
-  <head>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load("current", {packages:["corechart"]});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Date', 'Temperature'],
-          ['30 janvier 2017', 10.61],
-          ['30 janvier 2017', 9.41],
-          ['31 janvier 2017', 9.15],
-          ['31 janvier 2017', 9.12],
-          ['31 janvier 2017', 9.506],
-          ['1 fevrier 2017', 12.344],
-          ['1 fevrier 2017', 12.01],
-          ['1 fevrier 2017', 11.011],
-          ['2 fevrier 2017', 11.975],
-          ['2 fevrier 2017', 11.605],
-          ['2 fevrier 2017', 10.638],
-          ['3 fevrier 2017', 10.96],
-          ['3 fevrier 2017', 13.008],
-          ['3 fevrier 2017', 10.668],
-          ['4 fevrier 2017', 10.344],
-          ['4 fevrier 2017', 12.777],
-          ['4 fevrier 2017', 12.756],
-          ]);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evolution des températures de la ville de Tawarano</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div style="width: 80%; margin: auto;">
+        <canvas id="myChart"></canvas>
+    </div>
 
-      const labels = ['0-10', '10-20', '20-30', '30-40', '40-50', '50-60'];
+    <script>
+        // Données pour l'histogramme
+        const labels = ['0-10', '10-20', '20-30', '30-40', '40-50', '50-60'];
         const data = {
             labels: labels,
             datasets: [{
@@ -38,13 +25,25 @@
             }]
         };
 
-        var chart = new google.visualization.Histogram(document.getElementById('chart_div'));
-        chart.draw(data, options);
-      }
+        // Configuration de l'histogramme
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+
+        // Rendre l'histogramme dans le canvas
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
     </script>
-  </head>
-  <body>
-    <div id="chart_div" style="width: 900px; height: 500px;"></div>
-  </body>
+</body>
 </html>
 
