@@ -26,24 +26,17 @@
           ['4 fevrier 2017', 12.756],
           ]);
 
-            var options = {
-    title: 'Evolution des température de la ville de Tawarano',
-    legend: { position: 'none' },
-    colors: ['#4285F4'],
-
-    chartArea: { width: 405 },
-    hAxis: {
-      ticks: [30/01, 31/01, 01/02, 02/02, 03/02, 04/02,]
-    },
-    bar: { gap: 0 },
-
-    histogram: {
-      bucketSize: 0,
-      maxNumBuckets: 20,
-      minValue: -1,
-      maxValue: 1
-    }
-  };
+      const labels = ['0-10', '10-20', '20-30', '30-40', '40-50', '50-60'];
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'Distribution des âges',
+                data: [5, 10, 15, 20, 25, 30],
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        };
 
         var chart = new google.visualization.Histogram(document.getElementById('chart_div'));
         chart.draw(data, options);
