@@ -34,6 +34,25 @@
         var chart = new google.visualization.Histogram(document.getElementById('chart_div'));
         chart.draw(data, options);
       }
+
+        var options = {
+    title: 'Approximating Normal Distribution',
+    legend: { position: 'none' },
+    colors: ['#4285F4'],
+
+    chartArea: { width: 405 },
+    hAxis: {
+      ticks: [30/01, 31/01, 01/02, 02/02, 03/02, 04/02,]
+    },
+    bar: { gap: 0 },
+
+    histogram: {
+      bucketSize: 0,
+      maxNumBuckets: 20,
+      minValue: -1,
+      maxValue: 1
+    }
+  };
     </script>
   </head>
   <body>
