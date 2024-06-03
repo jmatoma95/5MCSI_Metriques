@@ -1,43 +1,40 @@
 <html>
   <head>
+    <meta charset="UTF-8" />
+    <title>Metrique</title>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load("current", {packages:["corechart"]});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-        ['Date', 'Temperature'],
-    ['30 janvier', 10.61],
-    ['30 janvier', 9.41],
-    ['31 janvier', 9.15],
-    ['31 janvier', 10.185],
-    ['31 janvier', 11.507],
-    ['1 février', 11.029],
-    ['1 février', 12.552],
-    ['1 février', 8.706],
-    ['2 février', 10.556],
-    ['2 février', 11.605],
-    ['2 février', 10.419],
-    ['3 février', 11.884],
-    ['3 février', 13.008],
-    ['3 février', 10.668],
-    ['4 février', 10.007],
-    ['4 février', 12.113],
-    ['4 février', 12.756],
-  ]);
-        var options = {
-          title: 'Evolution des températures de la vile de Tawarano',
-          legend: { position: 'none' },
-          histogram: { temperature: 20 }
-        };
-
-        var chart = new google.visualization.Histogram(document.getElementById('chart_div'));
-        chart.draw(data, options);
-      }
-    </script>
   </head>
   <body>
-    <div id="chart_div" style="width: 900px; height: 500px;"></div>
+    <div id="graph"></div>
+    <script>
+      google.charts.load('current', { packages: ['corechart'] });
+      google.charts.setOnLoadCallback(drawBackgroundColor);
+     function drawBackgroundColor() {
+    function drawChart(data) {
+    // Convertir les données récupérées en un tableau utilisable par Google Charts
+    var dataTable = new google.visualization.DataTable();
+    dataTable.addColumn('string', 'Date');
+    dataTable.addColumn('number', 'Valeur');
+    data.results.forEach(entry => {
+      var date = new Date(entry.Jour * 1000);
+      dataTable.addRow([date.toLocaleDateString(), entry.temp]);
+    });
+    // Configurer les options du graphique en ligne
+    var options = {
+      title: 'Évolution des températures de la ville de Tawarano',
+      curveType: 'function',
+      legend: { position: 'bottom' }
+    };
+    var chart = new google.visualization.LineChart(document.getElementById('graph'));
+    chart.draw(dataTable, options);
+  }
+  // Récupération de données depuis notre API /tawarano/
+  fetch('/tawarano/')
+    .then(response => response.json())
+    .then(data => {
+      drawChart(data);
+    })
+}
+    </script>
   </body>
 </html>
-
