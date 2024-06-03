@@ -26,17 +26,8 @@
           ['4 fevrier 2017', 12.756],
           ]);
 
-        var options = {
-          title: 'Evolution des températures de la vile de Tawarano',
-          legend: { position: 'valeur' },
-        };
-
-        var chart = new google.visualization.Histogram(document.getElementById('chart_div'));
-        chart.draw(data, options);
-      }
-
-        var options = {
-    title: 'Approximating Normal Distribution',
+            var options = {
+    title: 'Evolution des température de la ville de Tawarano',
     legend: { position: 'none' },
     colors: ['#4285F4'],
 
@@ -53,6 +44,10 @@
       maxValue: 1
     }
   };
+
+        var chart = new google.visualization.Histogram(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
     </script>
   </head>
   <body>
